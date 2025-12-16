@@ -27,14 +27,14 @@ class ExchangeListItem extends StatelessWidget {
               new Container(
                 width: MediaQuery.of(context).size.width * columnProps[0],
                 child: new Text(exchangeDataSnapshot["MARKET"],
-                    style: Theme.of(context).textTheme.body1),
+                    style: Theme.of(context).textTheme.bodyLarge),
               ),
               new Container(
                 alignment: Alignment.centerRight,
                 width: MediaQuery.of(context).size.width * columnProps[1],
                 child: new Text(
                     "\$" + normalizeNum(exchangeDataSnapshot["VOLUME24HOURTO"]),
-                    style: Theme.of(context).textTheme.body1),
+                    style: Theme.of(context).textTheme.bodyLarge),
               ),
               new Container(
                 width: MediaQuery.of(context).size.width * columnProps[2],
@@ -51,7 +51,7 @@ class ExchangeListItem extends StatelessWidget {
                                 "%",
                             style: Theme.of(context)
                                 .textTheme
-                                .body1
+                                .bodyLarge
                                 .apply(color: Colors.green))
                         : new Text(
                             exchangeDataSnapshot["CHANGEPCT24HOUR"]
@@ -59,7 +59,7 @@ class ExchangeListItem extends StatelessWidget {
                                 "%",
                             style: Theme.of(context)
                                 .textTheme
-                                .body1
+                                .bodyLarge
                                 .apply(color: Colors.red)),
                   ],
                 ),

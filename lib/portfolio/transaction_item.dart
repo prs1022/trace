@@ -68,20 +68,20 @@ class TransactionItem extends StatelessWidget {
           TextSpan(
               text: "${snapshot["quantity"]} $symbol",
               style:
-                  Theme.of(context).textTheme.body2.apply(fontWeightDelta: 2)),
-          TextSpan(text: " at ", style: Theme.of(context).textTheme.body1),
+                  Theme.of(context).textTheme.bodyMedium.apply(fontWeightDelta: 2)),
+          TextSpan(text: " at ", style: Theme.of(context).textTheme.bodyLarge),
           TextSpan(
               text:
                   "\$${num.parse(normalizeNumNoCommas(snapshot["price_usd"])).toString()}",
               style:
-                  Theme.of(context).textTheme.body2.apply(fontWeightDelta: 2)),
+                  Theme.of(context).textTheme.bodyMedium.apply(fontWeightDelta: 2)),
           TextSpan(
               text: changePercent > 0
                   ? " +" + changePercent.toStringAsFixed(2) + "%"
                   : " " + changePercent.toStringAsFixed(2) + "%",
               style: Theme.of(context)
                   .textTheme
-                  .body2
+                  .bodyMedium
                   .apply(color: changePercent > 0 ? Colors.green : Colors.red)),
         ])),
         subtitle: new Text(
@@ -93,7 +93,7 @@ class TransactionItem extends StatelessWidget {
                 child: new Text(snapshot["notes"],
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
-                    style: Theme.of(context).textTheme.caption),
+                    style: Theme.of(context).textTheme.bodySmall),
               )
             : null,
       ),

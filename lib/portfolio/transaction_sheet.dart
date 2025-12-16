@@ -356,11 +356,11 @@ class TransactionSheetState extends State<TransactionSheet> {
 
   @override
   Widget build(BuildContext context) {
-    validColor = Theme.of(context).textTheme.body2.color;
+    validColor = Theme.of(context).textTheme.bodyMedium.color;
     return new Container(
         decoration: new BoxDecoration(
           border: new Border(
-              top: new BorderSide(color: Theme.of(context).bottomAppBarColor)),
+              top: new BorderSide(color: Theme.of(context).colorScheme.surface)),
           color: Theme.of(context).primaryColor,
         ),
         padding: const EdgeInsets.only(
@@ -374,24 +374,24 @@ class TransactionSheetState extends State<TransactionSheet> {
                   children: <Widget>[
 //                    new Container(
 //                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-//                      child: new Text(widget.editMode ? "Edit Transaction" : "Add Transaction", style: Theme.of(context).textTheme.body2.apply(fontSizeFactor: 1.2, fontWeightDelta: 2))
+//                      child: new Text(widget.editMode ? "Edit Transaction" : "Add Transaction", style: Theme.of(context).textTheme.bodyMedium.apply(fontSizeFactor: 1.2, fontWeightDelta: 2))
 //                    ),
                     new Row(
                       children: <Widget>[
                         new Text("Buy",
-                            style: Theme.of(context).textTheme.caption),
+                            style: Theme.of(context).textTheme.bodySmall),
                         new Radio(
                             value: 0,
                             groupValue: radioValue,
                             onChanged: _handleRadioValueChange,
-                            activeColor: Theme.of(context).buttonColor),
+                            activeColor: Theme.of(context).labelLargeColor),
                         new Text("Sell",
-                            style: Theme.of(context).textTheme.caption),
+                            style: Theme.of(context).textTheme.bodySmall),
                         new Radio(
                             value: 1,
                             groupValue: radioValue,
                             onChanged: _handleRadioValueChange,
-                            activeColor: Theme.of(context).buttonColor),
+                            activeColor: Theme.of(context).labelLargeColor),
                         new Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 6.0)),
@@ -403,7 +403,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                   pickedDate.day.toString() +
                                   "/" +
                                   pickedDate.year.toString().substring(2),
-                              style: Theme.of(context).textTheme.button),
+                              style: Theme.of(context).textTheme.labelLarge),
                         ),
                         new Padding(
                             padding:
@@ -419,7 +419,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                     ? pickedTime.minute.toString()
                                     : "0" + pickedTime.minute.toString()) +
                                 (pickedTime.hour >= 12 ? "PM" : "AM"),
-                            style: Theme.of(context).textTheme.button,
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ),
                         new Padding(
@@ -443,7 +443,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                 .requestFocus(_quantityFocusNode),
                             style: Theme.of(context)
                                 .textTheme
-                                .body2
+                                .bodyMedium
                                 .apply(color: symbolTextColor),
                             decoration: new InputDecoration(
                               border: InputBorder.none,
@@ -463,7 +463,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                 .requestFocus(_priceFocusNode),
                             style: Theme.of(context)
                                 .textTheme
-                                .body2
+                                .bodyMedium
                                 .apply(color: quantityTextColor),
                             keyboardType: TextInputType.numberWithOptions(decimal: true),
                             decoration: new InputDecoration(
@@ -484,7 +484,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                 .requestFocus(_notesFocusNode),
                             style: Theme.of(context)
                                 .textTheme
-                                .body2
+                                .bodyMedium
                                 .apply(color: priceTextColor),
                             keyboardType: TextInputType.numberWithOptions(decimal: true),
                             decoration: new InputDecoration(
@@ -493,7 +493,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                                 prefixText: "\$",
                                 prefixStyle: Theme.of(context)
                                     .textTheme
-                                    .body2
+                                    .bodyMedium
                                     .apply(color: priceTextColor)),
                           ),
                         )
@@ -538,7 +538,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                               _exchangeController.text == ""
                                   ? "Exchange"
                                   : _exchangeController.text,
-                              style: Theme.of(context).textTheme.body2.apply(
+                              style: Theme.of(context).textTheme.bodyMedium.apply(
                                   color: _exchangeController.text == ""
                                       ? Theme.of(context).hintColor
                                       : validColor),
@@ -554,7 +554,7 @@ class TransactionSheetState extends State<TransactionSheet> {
                             textCapitalization: TextCapitalization.none,
                             style: Theme.of(context)
                                 .textTheme
-                                .body2
+                                .bodyMedium
                                 .apply(color: validColor),
                             keyboardType: TextInputType.text,
                             decoration: new InputDecoration(

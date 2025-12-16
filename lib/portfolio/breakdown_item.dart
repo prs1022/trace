@@ -43,7 +43,7 @@ class PortfolioBreakdownItem extends StatelessWidget {
                   _getImage(),
                   new Padding(padding: const EdgeInsets.only(right: 8.0)),
                   new Text(snapshot["symbol"],
-                      style: Theme.of(context).textTheme.body2),
+                      style: Theme.of(context).textTheme.bodyMedium),
                 ],
               ),
             ),
@@ -60,7 +60,7 @@ class PortfolioBreakdownItem extends StatelessWidget {
                               .toStringAsFixed(2)),
                       style: Theme.of(context)
                           .textTheme
-                          .body2
+                          .bodyMedium
                           .apply(fontSizeFactor: 1.05)),
                 ],
               ),
@@ -78,7 +78,7 @@ class PortfolioBreakdownItem extends StatelessWidget {
                                     100)
                                 .toStringAsFixed(2) +
                             "%",
-                        style: Theme.of(context).textTheme.body2.apply(
+                        style: Theme.of(context).textTheme.bodyMedium.apply(
                             color: color,
                             fontSizeFactor: 1.3,
                             fontWeightDelta: 2)),

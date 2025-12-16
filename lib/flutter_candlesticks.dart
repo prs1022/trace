@@ -17,8 +17,7 @@ class OHLCVGraph extends StatelessWidget {
     @required this.volumeProp,
     this.increaseColor = Colors.green,
     this.decreaseColor = Colors.red,
-  })  : assert(data != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// OHLCV data to graph  /// List of Maps containing open, high, low, close and volumeto
   /// Example: [["open" : 40.0, "high" : 75.0, "low" : 25.0, "close" : 50.0, "volumeto" : 5000.0}, {...}]
@@ -176,7 +175,7 @@ class _OHLCVPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (_min == null || _max == null || _maxVolume == null) {
+    if (_max == null) {
       update();
     }
 

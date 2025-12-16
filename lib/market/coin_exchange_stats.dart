@@ -159,7 +159,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
               exchangeData["FROMSYMBOL"] + " on " + exchangeData["MARKET"]),
         ),
       ),
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: new Container(
                 child: new Column(
                   children: <Widget>[
@@ -173,18 +173,18 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                           new Text("\$" + price.toString(),
                               style: Theme.of(context)
                                   .textTheme
-                                  .body2
+                                  .bodyMedium
                                   .apply(fontSizeFactor: 2.2)),
                           new Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
                               new Text("24h Volume",
-                                  style: Theme.of(context).textTheme.caption),
+                                  style: Theme.of(context).textTheme.bodySmall),
                               new Text(
                                   "\$" + numCommaParse(exchangeData["VOLUME24HOURTO"].toStringAsFixed(0)),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .body2
+                                      .bodyMedium
                                       .apply(
                                           fontSizeFactor: 1.1,
                                           fontWeightDelta: 2)),
@@ -215,7 +215,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                 new Text("Period",
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body1
+                                                        .bodyLarge
                                                         .apply(
                                                             color: Theme.of(
                                                                     context)
@@ -227,7 +227,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                 new Text(historyTotal,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body2
+                                                        .bodyMedium
                                                         .apply(
                                                             fontWeightDelta:
                                                                 2)),
@@ -241,7 +241,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                         : _change + "%",
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
-                                                        .body1
+                                                        .bodyLarge
                                                         .apply(
                                                             fontWeightDelta: 1,
                                                             color: num.parse(
@@ -259,7 +259,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                 new Text("Candle Width",
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body1
+                                                        .bodyLarge
                                                         .apply(
                                                             color: Theme.of(
                                                                     context)
@@ -275,7 +275,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                         [0],
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body2
+                                                        .bodyMedium
                                                         .apply(
                                                             fontWeightDelta: 2))
                                               ],
@@ -294,7 +294,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                           style: Theme.of(
                                                                   context)
                                                               .textTheme
-                                                              .body1
+                                                              .bodyLarge
                                                               .apply(
                                                                   color: Theme.of(
                                                                           context)
@@ -303,7 +303,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                           style: Theme.of(
                                                                   context)
                                                               .textTheme
-                                                              .body1
+                                                              .bodyLarge
                                                               .apply(
                                                                   color: Theme.of(
                                                                           context)
@@ -322,12 +322,12 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .body2),
+                                                                  .bodyMedium),
                                                       new Text("\$" + _low,
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .body2)
+                                                                  .bodyMedium)
                                                     ],
                                                   ),
                                                 ],
@@ -342,7 +342,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                               child: new PopupMenuButton(
                             tooltip: "Select Width",
                             icon: new Icon(Icons.swap_horiz,
-                                color: Theme.of(context).buttonColor),
+                                color: Theme.of(context).labelLargeColor),
                             itemBuilder: (BuildContext context) {
                               List<PopupMenuEntry<dynamic>> options = [];
                               for (int i = 0;
@@ -363,7 +363,7 @@ class CoinMarketStatsState extends State<CoinMarketStats> {
                               child: new PopupMenuButton(
                             tooltip: "Select Period",
                             icon: new Icon(Icons.access_time,
-                                color: Theme.of(context).buttonColor),
+                                color: Theme.of(context).labelLargeColor),
                             itemBuilder: (BuildContext context) => [
                                   new PopupMenuItem(
                                       child: new Text("1h"),

@@ -48,14 +48,14 @@ class PortfolioTabsState extends State<PortfolioTabs>
             titleSpacing: 0.0,
             elevation: appBarElevation,
             title:
-                new Text("Portfolio", style: Theme.of(context).textTheme.title),
+                new Text("Portfolio", style: Theme.of(context).textTheme.titleLarge),
             bottom: new PreferredSize(
                 preferredSize: const Size.fromHeight(25.0),
                 child: new Container(
                     height: 30.0,
                     child: new TabBar(
                       controller: _tabController,
-                      indicatorColor: Theme.of(context).accentIconTheme.color,
+                      indicatorColor: Theme.of(context).iconTheme.color,
                       indicatorWeight: 2.0,
                       unselectedLabelColor: Theme.of(context).disabledColor,
                       labelColor: Theme.of(context).primaryIconTheme.color,
@@ -283,7 +283,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               new Text("Portfolio Value",
-                                  style: Theme.of(context).textTheme.caption),
+                                  style: Theme.of(context).textTheme.bodySmall),
                               new Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
@@ -293,7 +293,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                               value.toStringAsFixed(2)),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .body2
+                                          .bodyMedium
                                           .apply(fontSizeFactor: 2.2)),
                                   new Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -313,14 +313,14 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                         new Text("High",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .caption),
+                                                .bodySmall),
                                         new Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 2.0)),
                                         new Text("\$" + normalizeNum(high),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .body2
+                                                .bodyMedium
                                                 .apply(fontSizeFactor: 1.1))
                                       ],
                                     )
@@ -331,14 +331,14 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                         new Text("Low",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .caption),
+                                                .bodySmall),
                                         new Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 3.0)),
                                         new Text("\$" + normalizeNum(low),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .body2
+                                                .bodyMedium
                                                 .apply(fontSizeFactor: 1.1))
                                       ],
                                     )
@@ -358,7 +358,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                       new Text(periodSetting,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .body2
+                                              .bodyMedium
                                               .apply(
                                                   fontWeightDelta: 2,
                                                   fontSizeFactor: 1.2)),
@@ -366,7 +366,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                         child: new PopupMenuButton(
                                           icon: new Icon(Icons.access_time,
                                               color: Theme.of(context)
-                                                  .buttonColor),
+                                                  .labelLargeColor),
                                           tooltip: "Select Period",
                                           itemBuilder: (context) {
                                             List<PopupMenuEntry<dynamic>>
@@ -395,7 +395,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                         "/${oldestPoint.year.toString().substring(2)} ➞ Now",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .body2
+                                            .bodyMedium
                                             .apply(fontSizeFactor: .9)),
                                   ),
                                 ],
@@ -416,7 +416,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter,
                                 colors: [
-                                  Theme.of(context).buttonColor,
+                                  Theme.of(context).labelLargeColor,
                                   Colors.purpleAccent[100]
                                 ]),
                             enableGridLines: true,
@@ -427,7 +427,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                       : new Container(
                           alignment: Alignment.center,
                           child: new Text("Transactions too recent or in the future.",
-                              style: Theme.of(context).textTheme.caption))
+                              style: Theme.of(context).textTheme.bodySmall))
                         )
                       : new Container(
                           alignment: Alignment.center,
@@ -437,7 +437,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                   padding:
                       const EdgeInsets.only(top: 16.0, left: 8.0, bottom: 4.0),
                   child: new Text("All Transactions",
-                      style: Theme.of(context).textTheme.caption),
+                      style: Theme.of(context).textTheme.bodySmall),
                 )
               ])),
               new SliverList(
@@ -456,7 +456,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
             alignment: Alignment.topCenter,
             padding: const EdgeInsets.symmetric(vertical: 40.0),
             child: new Text("Your portfolio is empty. Add a transaction!",
-                style: Theme.of(context).textTheme.caption));
+                style: Theme.of(context).textTheme.bodySmall));
   }
 
   final columnProps = [.2, .3, .3];
@@ -565,7 +565,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             new Text("Portfolio Value",
-                                style: Theme.of(context).textTheme.caption),
+                                style: Theme.of(context).textTheme.bodySmall),
                             new Row(
                               children: <Widget>[
                                 new Text(
@@ -573,7 +573,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                         numCommaParse(value.toStringAsFixed(2)),
                                     style: Theme.of(context)
                                         .textTheme
-                                        .body2
+                                        .bodyMedium
                                         .apply(fontSizeFactor: 2.2)),
                               ],
                             ),
@@ -583,7 +583,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             new Text("Total Net",
-                                style: Theme.of(context).textTheme.caption),
+                                style: Theme.of(context).textTheme.bodySmall),
                             new PercentDollarChange(
                               exact: net,
                               percent: netPercent,
@@ -594,12 +594,12 @@ class PortfolioTabsState extends State<PortfolioTabs>
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             new Text("Total Cost",
-                                style: Theme.of(context).textTheme.caption),
+                                style: Theme.of(context).textTheme.bodySmall),
                             new Text(
                                 "\$" + numCommaParse(cost.toStringAsFixed(2)),
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .body2
+                                    .bodyMedium
                                     .apply(fontSizeFactor: 1.4))
                           ],
                         ),
@@ -650,12 +650,12 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                     portfolioSortType[1] == true
                                         ? "Currency ⬆"
                                         : "Currency ⬇",
-                                    style: Theme.of(context).textTheme.body2)
+                                    style: Theme.of(context).textTheme.bodyMedium)
                                 : new Text(
                                     "Currency",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .body2
+                                        .bodyMedium
                                         .apply(
                                             color: Theme.of(context).hintColor),
                                   ),
@@ -686,11 +686,11 @@ class PortfolioTabsState extends State<PortfolioTabs>
                                     portfolioSortType[1] == true
                                         ? "Holdings ⬇"
                                         : "Holdings ⬆",
-                                    style: Theme.of(context).textTheme.body2)
+                                    style: Theme.of(context).textTheme.bodyMedium)
                                 : new Text("Holdings",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .body2
+                                        .bodyMedium
                                         .apply(
                                             color:
                                                 Theme.of(context).hintColor)),
@@ -703,7 +703,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
                           child: new Text("Percent of Total",
                               style: Theme.of(context)
                                   .textTheme
-                                  .body2
+                                  .bodyMedium
                                   .apply(color: Theme.of(context).hintColor)),
                         ),
                       ],
@@ -725,7 +725,7 @@ class PortfolioTabsState extends State<PortfolioTabs>
             alignment: Alignment.topCenter,
             padding: const EdgeInsets.symmetric(vertical: 40.0),
             child: new Text("Your portfolio is empty. Add a transaction!",
-                style: Theme.of(context).textTheme.caption));
+                style: Theme.of(context).textTheme.bodySmall));
   }
 }
 
@@ -742,26 +742,26 @@ class PercentDollarChange extends StatelessWidget {
               text: "+${(percent ?? 0).toStringAsFixed(2)}%\n",
               style: Theme.of(context)
                   .textTheme
-                  .body2
+                  .bodyMedium
                   .apply(color: Colors.green, fontSizeFactor: 1.1))
           : new TextSpan(
               text: "${(percent ?? 0).toStringAsFixed(2)}%\n",
               style: Theme.of(context)
                   .textTheme
-                  .body2
+                  .bodyMedium
                   .apply(color: Colors.red, fontSizeFactor: 1.1)),
       (exact ?? 0) > 0
           ? new TextSpan(
               text: "(\$${normalizeNum(exact)})",
               style: Theme.of(context)
                   .textTheme
-                  .body1
+                  .bodyLarge
                   .apply(color: Colors.green, fontSizeFactor: 1.0))
           : new TextSpan(
               text: "(\$${normalizeNum(exact)})",
               style: Theme.of(context)
                   .textTheme
-                  .body1
+                  .bodyLarge
                   .apply(color: Colors.red, fontSizeFactor: 1.0)),
     ]));
   }

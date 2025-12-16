@@ -3,20 +3,21 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'main.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage(
-      {this.savePreferences,
-      this.toggleTheme,
-      this.darkEnabled,
-      this.themeMode,
-      this.switchOLED,
-      this.darkOLED});
+  SettingsPage({
+    this.savePreferences,
+    this.toggleTheme,
+    this.darkEnabled,
+    this.themeMode,
+    this.switchOLED,
+    this.darkOLED,
+  });
   final Function savePreferences;
   final Function toggleTheme;
   final bool darkEnabled;
@@ -31,24 +32,27 @@ class SettingsPage extends StatefulWidget {
 class SettingsPageState extends State<SettingsPage> {
   _confirmDeletePortfolio() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return new AlertDialog(
-            title: new Text("Clear Portfolio?"),
-            content: new Text("This will permanently delete all transactions."),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: () async {
-                    await _deletePortfolio();
-                    Navigator.of(context).pop();
-                  },
-                  child: new Text("Delete")),
-              new FlatButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: new Text("Cancel"))
-            ],
-          );
-        });
+      context: context,
+      builder: (context) {
+        return new AlertDialog(
+          title: new Text("Clear Portfolio?"),
+          content: new Text("This will permanently delete all transactions."),
+          actions: <Widget>[
+            new TextButton(
+              onPressed: () async {
+                await _deletePortfolio();
+                Navigator.of(context).pop();
+              },
+              child: new Text("Delete"),
+            ),
+            new TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: new Text("Cancel"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<Null> _deletePortfolio() async {
@@ -62,39 +66,51 @@ class SettingsPageState extends State<SettingsPage> {
   _exportPortfolio() {
     String text = json.encode(portfolioMap);
     GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-    Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new Scaffold(
-          key: _scaffoldKey,
-          appBar: new PreferredSize(
-            preferredSize: const Size.fromHeight(appBarHeight),
-            child: new AppBar(
-              titleSpacing: 0.0,
-              elevation: appBarElevation,
-              title: new Text("Export Portfolio"),
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          return new Scaffold(
+            key: _scaffoldKey,
+            appBar: new PreferredSize(
+              preferredSize: const Size.fromHeight(appBarHeight),
+              child: new AppBar(
+                titleSpacing: 0.0,
+                elevation: appBarElevation,
+                title: new Text("Export Portfolio"),
+              ),
             ),
-          ),
-          body: new SingleChildScrollView(
+            body: new SingleChildScrollView(
               child: new InkWell(
-              onTap: () {
-                Clipboard.setData(new ClipboardData(text: text));
-                _scaffoldKey.currentState.showSnackBar(new SnackBar(
-                    backgroundColor: Theme.of(context).indicatorColor,
-                    content: new Text("Copied to Clipboard!")));
-            },
-            child: new Container(
-                padding: const EdgeInsets.all(10.0),
-                child: new Text(text,
-                    style: Theme.of(context)
-                        .textTheme
-                        .body1
-                        .apply(fontSizeFactor: 1.1))),
-          )));
-    }));
+                onTap: () {
+                  Clipboard.setData(new ClipboardData(text: text));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    new SnackBar(
+                      backgroundColor: Theme.of(context).indicatorColor,
+                      content: new Text("Copied to Clipboard!"),
+                    ),
+                  );
+                },
+                child: new Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: new Text(
+                    text,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge.apply(fontSizeFactor: 1.1),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 
   _showImportPage() {
-    Navigator.of(context)
-        .push(new MaterialPageRoute(builder: (context) => new ImportPage()));
+    Navigator.of(
+      context,
+    ).push(new MaterialPageRoute(builder: (context) => new ImportPage()));
   }
 
   _launchUrl(url) async {
@@ -111,11 +127,11 @@ class SettingsPageState extends State<SettingsPage> {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     setState(() {
       version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber; 
+      buildNumber = packageInfo.buildNumber;
     });
   }
 
-  void initState() { 
+  void initState() {
     super.initState();
     _getVersion();
   }
@@ -129,33 +145,37 @@ class SettingsPageState extends State<SettingsPage> {
           backgroundColor: Theme.of(context).primaryColor,
           titleSpacing: 0.0,
           elevation: appBarElevation,
-          title: new Text("Settings", style: Theme.of(context).textTheme.title),
+          title: new Text("Settings",
+              style: Theme.of(context).textTheme.titleLarge),
         ),
       ),
       body: new ListView(
         children: <Widget>[
           new Container(
             padding: const EdgeInsets.all(10.0),
-            child: new Text("Preferences",
-                style: Theme.of(context).textTheme.body2),
+            child: new Text(
+              "Preferences",
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
           new Container(
-              color: Theme.of(context).cardColor,
-              child: new ListTile(
-                onTap: widget.toggleTheme,
-                leading: new Icon(widget.darkEnabled
-                    ? Icons.brightness_3
-                    : Icons.brightness_7),
-                subtitle: new Text(widget.themeMode),
-                title: new Text("Theme"),
-              )),
+            color: Theme.of(context).cardColor,
+            child: new ListTile(
+              onTap: widget.toggleTheme,
+              leading: new Icon(
+                widget.darkEnabled ? Icons.brightness_3 : Icons.brightness_7,
+              ),
+              subtitle: new Text(widget.themeMode),
+              title: new Text("Theme"),
+            ),
+          ),
           new Container(
             color: Theme.of(context).cardColor,
             child: new ListTile(
               leading: new Icon(Icons.opacity),
               title: new Text("OLED Dark Mode"),
               trailing: new Switch(
-                activeColor: Theme.of(context).accentColor,
+                activeColor: Theme.of(context).colorScheme.secondary,
                 value: widget.darkOLED,
                 onChanged: (onOff) {
                   widget.switchOLED(state: onOff);
@@ -170,14 +190,15 @@ class SettingsPageState extends State<SettingsPage> {
               leading: new Icon(Icons.short_text),
               title: new Text("Abbreviate Numbers"),
               trailing: new Switch(
-                  activeColor: Theme.of(context).accentColor,
-                  value: shortenOn,
-                  onChanged: (onOff) {
-                    setState(() {
-                      shortenOn = onOff;
-                    });
-                    widget.savePreferences();
-                  }),
+                activeColor: Theme.of(context).colorScheme.secondary,
+                value: shortenOn,
+                onChanged: (onOff) {
+                  setState(() {
+                    shortenOn = onOff;
+                  });
+                  widget.savePreferences();
+                },
+              ),
               onTap: () {
                 setState(() {
                   shortenOn = !shortenOn;
@@ -188,7 +209,8 @@ class SettingsPageState extends State<SettingsPage> {
           ),
           new Container(
             padding: const EdgeInsets.all(10.0),
-            child: new Text("Debug", style: Theme.of(context).textTheme.body2),
+            child: new Text("Debug",
+                style: Theme.of(context).textTheme.bodyMedium),
           ),
           new Container(
             color: Theme.of(context).cardColor,
@@ -234,7 +256,8 @@ class SettingsPageState extends State<SettingsPage> {
           ),
           new Container(
             padding: const EdgeInsets.all(10.0),
-            child: new Text("Credit", style: Theme.of(context).textTheme.body2),
+            child: new Text("Credit",
+                style: Theme.of(context).textTheme.bodyMedium),
           ),
           new Container(
             color: Theme.of(context).cardColor,
@@ -242,12 +265,17 @@ class SettingsPageState extends State<SettingsPage> {
               title: new RichText(
                 text: new TextSpan(
                   text: "Maintained with love by ",
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.titleMedium,
                   children: <TextSpan>[
-                    TextSpan(text: "@TrentPiercy", style: Theme.of(context).textTheme.subhead
-                      .apply(color: Theme.of(context).buttonColor, fontWeightDelta: 2))
-                  ]
-                )
+                    TextSpan(
+                      text: "@TrentPiercy",
+                      style: Theme.of(context).textTheme.titleMedium.apply(
+                            color: Theme.of(context).labelLargeColor,
+                            fontWeightDelta: 2,
+                          ),
+                    ),
+                  ],
+                ),
               ),
               subtitle: new Text("twitter.com/trentpiercy"),
               leading: new Icon(Icons.favorite),
@@ -289,8 +317,13 @@ class ImportPageState extends State<ImportPage> {
         }
         for (Map transaction in transactions) {
           if ((transaction.keys.toList()..sort()).toString() !=
-              ["exchange", "notes", "price_usd", "quantity", "time_epoch"]
-                  .toString()) {
+              [
+                "exchange",
+                "notes",
+                "price_usd",
+                "quantity",
+                "time_epoch",
+              ].toString()) {
             throw "failed formatting check at transaction keys";
           }
           for (String K in transaction.keys) {
@@ -303,7 +336,7 @@ class ImportPageState extends State<ImportPage> {
 
       newPortfolioMap = checkMap;
       setState(() {
-        textColor = Theme.of(context).textTheme.body1.color;
+        textColor = Theme.of(context).textTheme.bodyLarge.color;
       });
     } catch (e) {
       print("Invalid JSON: $e");
@@ -316,33 +349,38 @@ class ImportPageState extends State<ImportPage> {
 
   _importPortfolio() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return new AlertDialog(
-            title: new Text("Import Portfolio?"),
-            content: new Text(
-                "This will permanently overwrite current portfolio and transactions."),
-            actions: <Widget>[
-              new FlatButton(
-                  onPressed: () async {
-                    portfolioMap = newPortfolioMap;
-                    await getApplicationDocumentsDirectory()
-                        .then((Directory directory) {
-                      File jsonFile =
-                          new File(directory.path + "/portfolio.json");
-                      jsonFile.writeAsStringSync(json.encode(portfolioMap));
-                    });
-                    Navigator.of(context).pop();
-                    _scaffoldKey.currentState.showSnackBar(
-                        new SnackBar(content: new Text("Success!")));
-                  },
-                  child: new Text("Import")),
-              new FlatButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: new Text("Cancel"))
-            ],
-          );
-        });
+      context: context,
+      builder: (context) {
+        return new AlertDialog(
+          title: new Text("Import Portfolio?"),
+          content: new Text(
+            "This will permanently overwrite current portfolio and transactions.",
+          ),
+          actions: <Widget>[
+            new TextButton(
+              onPressed: () async {
+                portfolioMap = newPortfolioMap;
+                await getApplicationDocumentsDirectory().then((
+                  Directory directory,
+                ) {
+                  File jsonFile = new File(directory.path + "/portfolio.json");
+                  jsonFile.writeAsStringSync(json.encode(portfolioMap));
+                });
+                Navigator.of(context).pop();
+                _scaffoldKey.currentState.showSnackBar(
+                  new SnackBar(content: new Text("Success!")),
+                );
+              },
+              child: new Text("Import"),
+            ),
+            new TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: new Text("Cancel"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -356,71 +394,78 @@ class ImportPageState extends State<ImportPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        key: _scaffoldKey,
-        appBar: new PreferredSize(
-          preferredSize: const Size.fromHeight(appBarHeight),
-          child: new AppBar(
-            titleSpacing: 0.0,
-            elevation: appBarElevation,
-            title: new Text("Import Portfolio"),
-          ),
+      key: _scaffoldKey,
+      appBar: new PreferredSize(
+        preferredSize: const Size.fromHeight(appBarHeight),
+        child: new AppBar(
+          titleSpacing: 0.0,
+          elevation: appBarElevation,
+          title: new Text("Import Portfolio"),
         ),
-        body: new SingleChildScrollView(
-          child: new Column(
-            children: <Widget>[
-              new Padding(
-                    padding: EdgeInsets.only(top: 6.0),
-              ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new RaisedButton(
-                    onPressed: () async {
-                      String clipText = (await Clipboard.getData('text/plain')).text;
-                      _importController.text = clipText;
-                      _checkImport(clipText);
-                    },
-                    child: new Text("Paste",
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .apply(color: Theme.of(context).iconTheme.color)),
+      ),
+      body: new SingleChildScrollView(
+        child: new Column(
+          children: <Widget>[
+            new Padding(padding: EdgeInsets.only(top: 6.0)),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new ElevatedButton(
+                  onPressed: () async {
+                    String clipText = (await Clipboard.getData(
+                      'text/plain',
+                    ))
+                        .text;
+                    _importController.text = clipText;
+                    _checkImport(clipText);
+                  },
+                  child: new Text(
+                    "Paste",
+                    style: Theme.of(context).textTheme.bodyMedium.apply(
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                   ),
-                  new Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 6.0),
-                  ),
-                  new RaisedButton(
-                    onPressed: textColor != Colors.red ? _importPortfolio : null,
-                    child: new Text("Import",
-                        style: Theme.of(context)
-                            .textTheme
-                            .body2
-                            .apply(color: Theme.of(context).iconTheme.color)),
-                    color: Colors.green,
-                  ),
-                ],
-              ),
-              new Container(
-                padding: const EdgeInsets.all(10.0),
-                child: new TextField(
-                  controller: _importController,
-                  maxLines: null,
-                  style: Theme.of(context)
-                      .textTheme
-                      .body1
-                      .apply(color: textColor, fontSizeFactor: 1.1),
-                  decoration: new InputDecoration(
-                      focusedBorder: new OutlineInputBorder(
-                          borderSide: new BorderSide(
-                              color: Theme.of(context).accentColor,
-                              width: 2.0)),
-                      border: new OutlineInputBorder(),
-                      hintText: "Enter Portfolio JSON"),
-                  onChanged: _checkImport,
                 ),
+                new Padding(padding: EdgeInsets.symmetric(horizontal: 6.0)),
+                new ElevatedButton(
+                  onPressed: textColor != Colors.red ? _importPortfolio : null,
+                  child: new Text(
+                    "Import",
+                    style: Theme.of(context).textTheme.bodyMedium.apply(
+                          color: Theme.of(context).iconTheme.color,
+                        ),
+                  ),
+                  color: Colors.green,
+                ),
+              ],
+            ),
+            new Container(
+              padding: const EdgeInsets.all(10.0),
+              child: new TextField(
+                controller: _importController,
+                maxLines: null,
+                style: Theme.of(
+                  context,
+                )
+                    .textTheme
+                    .bodyLarge
+                    .apply(color: textColor, fontSizeFactor: 1.1),
+                decoration: new InputDecoration(
+                  focusedBorder: new OutlineInputBorder(
+                    borderSide: new BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 2.0,
+                    ),
+                  ),
+                  border: new OutlineInputBorder(),
+                  hintText: "Enter Portfolio JSON",
+                ),
+                onChanged: _checkImport,
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

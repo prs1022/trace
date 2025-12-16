@@ -80,14 +80,14 @@ class CoinDetailsState extends State<CoinDetails>
             titleSpacing: 2.0,
             elevation: appBarElevation,
             title: new Text(widget.snapshot["CoinInfo"]["FullName"],
-                style: Theme.of(context).textTheme.title),
+                style: Theme.of(context).textTheme.titleLarge),
             bottom: new PreferredSize(
                 preferredSize: const Size.fromHeight(25.0),
                 child: new Container(
                     height: 30.0,
                     child: new TabBar(
                       controller: _tabController,
-                      indicatorColor: Theme.of(context).accentIconTheme.color,
+                      indicatorColor: Theme.of(context).iconTheme.color,
                       indicatorWeight: 2.0,
                       unselectedLabelColor: Theme.of(context).disabledColor,
                       labelColor: Theme.of(context).primaryIconTheme.color,
@@ -222,7 +222,7 @@ class CoinDetailsState extends State<CoinDetails>
 
   Widget aggregateStats(BuildContext context) {
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: new Container(
                 child: new Column(
                   children: <Widget>[
@@ -241,7 +241,7 @@ class CoinDetailsState extends State<CoinDetails>
                                       : "0"),
                               style: Theme.of(context)
                                   .textTheme
-                                  .body2
+                                  .bodyMedium
                                   .apply(fontSizeFactor: 2.2)),
                           new Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -253,7 +253,7 @@ class CoinDetailsState extends State<CoinDetails>
                                   new Text("Market Cap",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .caption
+                                          .bodySmall
                                           .apply(
                                               color:
                                                   Theme.of(context).hintColor)),
@@ -263,7 +263,7 @@ class CoinDetailsState extends State<CoinDetails>
                                   new Text("24h Volume",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .caption
+                                          .bodySmall
                                           .apply(
                                               color:
                                                   Theme.of(context).hintColor)),
@@ -283,7 +283,7 @@ class CoinDetailsState extends State<CoinDetails>
                                           : "0",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .body2
+                                          .bodyMedium
                                           .apply(
                                               fontSizeFactor: 1.1,
                                               fontWeightDelta: 2)),
@@ -295,7 +295,7 @@ class CoinDetailsState extends State<CoinDetails>
                                           : "0",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .body2
+                                          .bodyMedium
                                           .apply(
                                               fontSizeFactor: 1.1,
                                               fontWeightDelta: 2,
@@ -330,7 +330,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                 new Text("Period",
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body1
+                                                        .bodyLarge
                                                         .apply(
                                                             color: Theme.of(
                                                                     context)
@@ -342,7 +342,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                 new Text(historyTotal,
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body2
+                                                        .bodyMedium
                                                         .apply(
                                                             fontWeightDelta:
                                                                 2)),
@@ -359,7 +359,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                             : _change + "%",
                                                         style: Theme.of(context)
                                                             .primaryTextTheme
-                                                            .body2
+                                                            .bodyMedium
                                                             .apply(
                                                                 color: num.parse(
                                                                             _change) >=
@@ -376,7 +376,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                 new Text("Candle Width",
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body1
+                                                        .bodyLarge
                                                         .apply(
                                                             color: Theme.of(
                                                                     context)
@@ -392,7 +392,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                         [0],
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .body2
+                                                        .bodyMedium
                                                         .apply(
                                                             fontWeightDelta: 2))
                                               ],
@@ -411,7 +411,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                           style: Theme.of(
                                                                   context)
                                                               .textTheme
-                                                              .body1
+                                                              .bodyLarge
                                                               .apply(
                                                                   color: Theme.of(
                                                                           context)
@@ -420,7 +420,7 @@ class CoinDetailsState extends State<CoinDetails>
                                                           style: Theme.of(
                                                                   context)
                                                               .textTheme
-                                                              .body1
+                                                              .bodyLarge
                                                               .apply(
                                                                   color: Theme.of(
                                                                           context)
@@ -439,12 +439,12 @@ class CoinDetailsState extends State<CoinDetails>
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .body2),
+                                                                  .bodyMedium),
                                                       new Text("\$" + _low,
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .body2)
+                                                                  .bodyMedium)
                                                     ],
                                                   ),
                                                 ],
@@ -459,7 +459,7 @@ class CoinDetailsState extends State<CoinDetails>
                               child: new PopupMenuButton(
                             tooltip: "Select Width",
                             icon: new Icon(Icons.swap_horiz,
-                                color: Theme.of(context).buttonColor),
+                                color: Theme.of(context).labelLargeColor),
                             itemBuilder: (BuildContext context) {
                               List<PopupMenuEntry<dynamic>> options = [];
                               for (int i = 0;
@@ -480,7 +480,7 @@ class CoinDetailsState extends State<CoinDetails>
                               child: new PopupMenuButton(
                             tooltip: "Select Period",
                             icon: new Icon(Icons.access_time,
-                                color: Theme.of(context).buttonColor),
+                                color: Theme.of(context).labelLargeColor),
                             itemBuilder: (BuildContext context) => [
                                   new PopupMenuItem(
                                       child: new Text("1h"),
@@ -545,7 +545,7 @@ class CoinDetailsState extends State<CoinDetails>
                                       child: new Text("No OHLCV data found :(",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption),
+                                              .bodySmall),
                                     ),
                             )
                           : new Container(
@@ -653,12 +653,12 @@ class CoinDetailsState extends State<CoinDetails>
                                               ? "Exchange $upArrow"
                                               : "Exchange $downArrow",
                                           style:
-                                              Theme.of(context).textTheme.body2)
+                                              Theme.of(context).textTheme.bodyMedium)
                                       : new Text(
                                           "Exchange",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .body2
+                                              .bodyMedium
                                               .apply(
                                                   color: Theme.of(context)
                                                       .hintColor),
@@ -688,11 +688,11 @@ class CoinDetailsState extends State<CoinDetails>
                                               ? "24h Volume $downArrow"
                                               : "24h Volume $upArrow",
                                           style:
-                                              Theme.of(context).textTheme.body2)
+                                              Theme.of(context).textTheme.bodyMedium)
                                       : new Text("24h Volume",
                                           style: Theme.of(context)
                                               .textTheme
-                                              .body2
+                                              .bodyMedium
                                               .apply(
                                                   color: Theme.of(context)
                                                       .hintColor)),
@@ -725,11 +725,11 @@ class CoinDetailsState extends State<CoinDetails>
                                                     : "Price $upArrow",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .body2)
+                                                    .bodyMedium)
                                             : new Text("Price",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .body2
+                                                    .bodyMedium
                                                     .apply(
                                                         color: Theme.of(context)
                                                             .hintColor)),
@@ -738,7 +738,7 @@ class CoinDetailsState extends State<CoinDetails>
                                     new Text("/",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .body2
+                                            .bodyMedium
                                             .apply(
                                                 color: Theme.of(context)
                                                     .hintColor)),
@@ -761,11 +761,11 @@ class CoinDetailsState extends State<CoinDetails>
                                                 sortType[1] ? "24h $downArrow" : "24h $upArrow",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .body2)
+                                                    .bodyMedium)
                                             : new Text("24h",
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .body2
+                                                    .bodyMedium
                                                     .apply(
                                                         color: Theme.of(context)
                                                             .hintColor)),
@@ -796,7 +796,7 @@ class CoinDetailsState extends State<CoinDetails>
                           padding: const EdgeInsets.all(30.0),
                           alignment: Alignment.topCenter,
                           child: new Text("No exchanges found :(",
-                              style: Theme.of(context).textTheme.caption),
+                              style: Theme.of(context).textTheme.bodySmall),
                         )
                       ]))
                     ],
@@ -865,14 +865,14 @@ class CoinDetailsState extends State<CoinDetails>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new Text("Total Value",
-                        style: Theme.of(context).textTheme.caption),
+                        style: Theme.of(context).textTheme.bodySmall),
                     new Row(
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         new Text("\$" + numCommaParse(value.toStringAsFixed(2)),
                             style: Theme.of(context)
                                 .textTheme
-                                .body2
+                                .bodyMedium
                                 .apply(fontSizeFactor: 2.2)),
                       ],
                     ),
@@ -882,7 +882,7 @@ class CoinDetailsState extends State<CoinDetails>
                             symbol,
                         style: Theme.of(context)
                             .textTheme
-                            .body2
+                            .bodyMedium
                             .apply(fontSizeFactor: 1.2)),
                   ],
                 ),
@@ -890,7 +890,7 @@ class CoinDetailsState extends State<CoinDetails>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     new Text("Total Net",
-                        style: Theme.of(context).textTheme.caption),
+                        style: Theme.of(context).textTheme.bodySmall),
                     new PercentDollarChange(
                       exact: net,
                       percent: netPercent,
@@ -901,11 +901,11 @@ class CoinDetailsState extends State<CoinDetails>
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     new Text("Total Cost",
-                        style: Theme.of(context).textTheme.caption),
+                        style: Theme.of(context).textTheme.bodySmall),
                     new Text("\$" + numCommaParse(cost.toStringAsFixed(2)),
                         style: Theme.of(context)
                             .primaryTextTheme
-                            .body2
+                            .bodyMedium
                             .apply(fontSizeFactor: 1.5))
                   ],
                 ),
